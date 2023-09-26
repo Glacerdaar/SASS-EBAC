@@ -1,0 +1,142 @@
+@use 'config/reset';
+@use 'config/variaveis';
+@use 'sass:math';
+
+
+@function pixelParaEm($alvoEmPixel, $contextoEmPixel: 16px) {
+   @return math.div($alvoEmPixel, $contextoEmPixel)+em;
+}
+
+body {
+    background-color: #fff;
+
+        li {
+            list-style: none;
+        }
+
+            .container {
+                max-width: 1024px;
+                width: 100%;
+                margin: 0 auto;
+            }
+}
+
+
+header {
+    background-color: variaveis.$corPrincipal;
+    position: sticky;
+    top: 0;
+    left: 0;
+    padding: 20px 0;
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 8px;
+
+            h1 {
+                color: variaveis.$corSecundaria;
+            }
+
+            .menu {
+                display: flex;
+
+                li {
+                    font-weight: bold;
+                    margin-left: 24px;
+
+                    a {
+                        color: variaveis.$corSecundaria;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+}
+
+section {
+    padding: 56px 0;
+
+    .container {
+        h2 {
+            padding: 16px 8px;   
+            color: variaveis.$corPrincipal;
+            font-size: pixelParaEm(48px);
+        }
+    }
+
+        .products {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 32.66%);
+            column-gap: 1%;
+            row-gap: 4%;
+            width: 100%;
+            justify-content: center;
+            color: variaveis.$corPrincipal;
+
+                img {
+                    width: 100%;
+                    border-radius: 16px;
+                }
+
+                h4 {
+                    font-size: pixelParaEm(22px);
+                }
+
+                .product-button {
+                    display: block;
+                    background-color: variaveis.$corSecundaria;
+                    color: variaveis.$corPrincipal;
+                    text-align: center;
+                    padding: 8px 0;
+                    border-radius: 8px;
+                    margin-top: 8px;
+                    text-decoration: none;
+
+                    &:hover {
+                        background-color: darken(variaveis.$corSecundaria, 15%)
+                    }
+                }
+        }
+}
+
+footer {
+    background-color: variaveis.$corPrincipal;
+    padding: 20px 0;
+    color: variaveis.$corSecundaria;
+    text-align: center;
+    font-size: pixelParaEm(18px);
+}
+
+@media screen and (max-width: variaveis.$tablet){
+
+    .container {
+        max-width: 80%;
+
+            .products {
+                grid-template-columns: repeat(2, 47.5%);
+                column-gap: 3%;
+            }
+    }
+}
+
+@media screen and (max-width: variaveis.$mobile){
+
+    .container {
+
+        .products {
+          display: block;  
+          
+            .product-item {
+                max-width: 80%;
+                margin: 0 auto;
+
+                    .product-button {
+                        margin-bottom: 32px;
+                    }
+            }
+        } 
+    }
+}
